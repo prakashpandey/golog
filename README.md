@@ -11,7 +11,7 @@
 ## Installation
 
 ```sh
-go get github.com/yourusername/golog
+go get github.com/prakashpandey/golog
 ```
 
 ## Usage
@@ -31,6 +31,4 @@ func main() {
 	logger.Warn(ctx, "This is a warning message", "component", "main")
 	logger.Error(ctx, "An error occurred", "error", "nil pointer dereference")
 }
-
-
 ```
