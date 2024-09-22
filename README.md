@@ -18,7 +18,7 @@ go get github.com/yourusername/golog
 
 ```golang
 func main() {
-	config := log.Config{
+	config := log.Conf{
 		Outputs:  []io.Writer{os.Stdout, os.Stderr},
 		UseJSON:  true,
 		LogLevel: log.Info,
