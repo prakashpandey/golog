@@ -1,0 +1,20 @@
+mode: set
+github.com/prakashpandey/golog/examples/multi_output_target.go:12.13,25.2 6 0
+github.com/prakashpandey/golog/slog/slog.go:18.50,19.15 1 1
+github.com/prakashpandey/golog/slog/slog.go:20.17,21.25 1 1
+github.com/prakashpandey/golog/slog/slog.go:22.16,23.24 1 0
+github.com/prakashpandey/golog/slog/slog.go:24.16,25.24 1 1
+github.com/prakashpandey/golog/slog/slog.go:26.17,27.25 1 0
+github.com/prakashpandey/golog/slog/slog.go:28.10,29.24 1 0
+github.com/prakashpandey/golog/slog/slog.go:34.50,44.20 4 1
+github.com/prakashpandey/golog/slog/slog.go:44.20,46.3 1 0
+github.com/prakashpandey/golog/slog/slog.go:46.8,48.3 1 1
+github.com/prakashpandey/golog/slog/slog.go:50.2,53.3 1 1
+github.com/prakashpandey/golog/slog/slog.go:56.82,57.28 1 1
+github.com/prakashpandey/golog/slog/slog.go:57.28,59.3 1 1
+github.com/prakashpandey/golog/slog/slog.go:62.83,63.29 1 1
+github.com/prakashpandey/golog/slog/slog.go:63.29,65.3 1 1
+github.com/prakashpandey/golog/slog/slog.go:68.83,69.29 1 1
+github.com/prakashpandey/golog/slog/slog.go:69.29,71.3 1 1
+github.com/prakashpandey/golog/slog/slog.go:74.82,75.28 1 1
+github.com/prakashpandey/golog/slog/slog.go:75.28,77.3 1 1
