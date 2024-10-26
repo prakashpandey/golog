@@ -27,7 +27,7 @@ type Logger interface {
 }
 
 // Conf holds configuration for the logger, including log level and output format.
-type Conf struct {
+type Config struct {
 	Outputs  []io.Writer // Output targets, e.g., os.Stdout, os.Stderr
 	UseJSON  bool        // Set true for JSON output
 	LogLevel Level       // Minimum log level
