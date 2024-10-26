@@ -13,13 +13,17 @@ const (
 	Info
 	Warn
 	Error
+	Critical
+	Fatal
 )
 
 type Logger interface {
-	Info(ctx context.Context, msg string, keysAndValues ...any)
-	Error(ctx context.Context, msg string, keysAndValues ...any)
 	Debug(ctx context.Context, msg string, keysAndValues ...any)
+	Info(ctx context.Context, msg string, keysAndValues ...any)
 	Warn(ctx context.Context, msg string, keysAndValues ...any)
+	Error(ctx context.Context, msg string, keysAndValues ...any)
+	Critical(ctx context.Context, msg string, keysAndValues ...any)
+	Fatal(ctx context.Context, msg string, keysAndValues ...any)
 }
 
 // Conf holds configuration for the logger, including log level and output format.
