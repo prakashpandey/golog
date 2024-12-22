@@ -10,10 +10,10 @@ import (
 )
 
 func main() {
-	config := log.Conf{
-		Outputs:  []io.Writer{os.Stdout, os.Stderr},
-		UseJSON:  true,
-		LogLevel: log.Info,
+	config := log.Config{
+		Outputs:      []io.Writer{os.Stdout, os.Stderr},
+		OutputFormat: log.OutputFormatJSON,
+		LogLevel:     log.Info,
 	}
 
 	logger := slog.NewSlogLogger(config)

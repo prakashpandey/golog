@@ -26,9 +26,16 @@ type Logger interface {
 	Fatal(ctx context.Context, msg string, keysAndValues ...any)
 }
 
+type OutputFormat string
+
+const (
+	OutputFormatTEXT OutputFormat = "TEXT"
+	OutputFormatJSON OutputFormat = "JSON"
+)
+
 // Conf holds configuration for the logger, including log level and output format.
 type Config struct {
-	Outputs  []io.Writer // Output targets, e.g., os.Stdout, os.Stderr
-	UseJSON  bool        // Set true for JSON output
-	LogLevel Level       // Minimum log level
+	Outputs      []io.Writer  // Output targets, e.g., os.Stdout, os.Stderr
+	OutputFormat OutputFormat // Set true for JSON output
+	LogLevel     Level        // Minimum log level
 }

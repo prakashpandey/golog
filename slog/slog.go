@@ -14,6 +14,16 @@ type SlogLogger struct {
 	logLevel log.Level
 }
 
+// Critical implements log.Logger.
+func (l *SlogLogger) Critical(ctx context.Context, msg string, keysAndValues ...any) {
+	panic("unimplemented")
+}
+
+// Fatal implements log.Logger.
+func (l *SlogLogger) Fatal(ctx context.Context, msg string, keysAndValues ...any) {
+	panic("unimplemented")
+}
+
 // Convert the custom LogLevel to slog's LogLevel.
 func convertLogLevel(level log.Level) slog.Level {
 	switch level {
@@ -31,7 +41,7 @@ func convertLogLevel(level log.Level) slog.Level {
 }
 
 // NewSlogLogger initializes the SlogLogger with the given config.
-func NewSlogLogger(config log.Conf) log.Logger {
+func NewSlogLogger(config log.Config) log.Logger {
 	multiWriter := io.MultiWriter(config.Outputs...)
 
 	// Create HandlerOptions with the desired log level.
@@ -41,7 +51,7 @@ func NewSlogLogger(config log.Conf) log.Logger {
 
 	// Define handler based on log format.
 	var handler slog.Handler
-	if config.UseJSON {
+	if config.OutputFormat != log.OutputFormatJSON {
 		handler = slog.NewJSONHandler(multiWriter, handlerOptions)
 	} else {
 		handler = slog.NewTextHandler(multiWriter, handlerOptions)

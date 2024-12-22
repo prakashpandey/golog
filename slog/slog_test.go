@@ -13,10 +13,10 @@ import (
 // TestSlogLogger_LogLevel tests that log levels are respected.
 func TestSlogLogger_LogLevel(t *testing.T) {
 	r, w := io.Pipe()
-	config := log.Conf{
-		Outputs:  []io.Writer{w},
-		UseJSON:  false,
-		LogLevel: log.Warn, // Only log warnings and errors
+	config := log.Config{
+		Outputs:      []io.Writer{w},
+		OutputFormat: log.OutputFormatJSON,
+		LogLevel:     log.Warn, // Only log warnings and errors
 	}
 
 	logger := slog.NewSlogLogger(config)
@@ -41,10 +41,10 @@ func TestSlogLogger_LogLevel(t *testing.T) {
 // TestSlogLogger_DebugLevel tests the logger when log level is set to Debug.
 func TestSlogLogger_DebugLevel(t *testing.T) {
 	r, w := io.Pipe()
-	config := log.Conf{
-		Outputs:  []io.Writer{w},
-		UseJSON:  false,
-		LogLevel: log.Debug, // Allow all logs (Debug, Info, Warn, Error)
+	config := log.Config{
+		Outputs:      []io.Writer{w},
+		OutputFormat: log.OutputFormatJSON,
+		LogLevel:     log.Debug, // Allow all logs (Debug, Info, Warn, Error)
 	}
 
 	logger := slog.NewSlogLogger(config)
