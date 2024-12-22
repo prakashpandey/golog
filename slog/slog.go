@@ -4,6 +4,7 @@ import (
 	"context"
 	"io"
 	"log/slog"
+	"os"
 
 	"github.com/prakashpandey/golog/log"
 )
@@ -12,16 +13,6 @@ import (
 type SlogLogger struct {
 	logger   *slog.Logger
 	logLevel log.Level
-}
-
-// Critical implements log.Logger.
-func (l *SlogLogger) Critical(ctx context.Context, msg string, keysAndValues ...any) {
-	panic("unimplemented")
-}
-
-// Fatal implements log.Logger.
-func (l *SlogLogger) Fatal(ctx context.Context, msg string, keysAndValues ...any) {
-	panic("unimplemented")
 }
 
 // Convert the custom LogLevel to slog's LogLevel.
@@ -51,7 +42,7 @@ func NewSlogLogger(config log.Config) log.Logger {
 
 	// Define handler based on log format.
 	var handler slog.Handler
-	if config.OutputFormat != log.OutputFormatJSON {
+	if config.OutputFormat == log.OutputFormatJSON {
 		handler = slog.NewJSONHandler(multiWriter, handlerOptions)
 	} else {
 		handler = slog.NewTextHandler(multiWriter, handlerOptions)
@@ -63,9 +54,21 @@ func NewSlogLogger(config log.Config) log.Logger {
 	}
 }
 
+func (l *SlogLogger) Debug(ctx context.Context, msg string, keysAndValues ...any) {
+	if l.logLevel <= log.Debug {
+		l.logger.DebugContext(ctx, msg, keysAndValues...)
+	}
+}
+
 func (l *SlogLogger) Info(ctx context.Context, msg string, keysAndValues ...any) {
 	if l.logLevel <= log.Info {
 		l.logger.InfoContext(ctx, msg, keysAndValues...)
+	}
+}
+
+func (l *SlogLogger) Warn(ctx context.Context, msg string, keysAndValues ...any) {
+	if l.logLevel <= log.Warn {
+		l.logger.WarnContext(ctx, msg, keysAndValues...)
 	}
 }
 
@@ -75,14 +78,8 @@ func (l *SlogLogger) Error(ctx context.Context, msg string, keysAndValues ...any
 	}
 }
 
-func (l *SlogLogger) Debug(ctx context.Context, msg string, keysAndValues ...any) {
-	if l.logLevel <= log.Debug {
-		l.logger.DebugContext(ctx, msg, keysAndValues...)
-	}
-}
-
-func (l *SlogLogger) Warn(ctx context.Context, msg string, keysAndValues ...any) {
-	if l.logLevel <= log.Warn {
-		l.logger.WarnContext(ctx, msg, keysAndValues...)
-	}
+// Fatal always logs to ErrorContext irrespective of log level and calls os.Exit(1).
+func (l *SlogLogger) Fatal(ctx context.Context, msg string, keysAndValues ...any) {
+	l.logger.ErrorContext(ctx, msg, keysAndValues...)
+	os.Exit(1)
 }
