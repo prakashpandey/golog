@@ -26,9 +26,9 @@ import(
 )
 func main() {
 	config := log.Conf{
-		Outputs:  []io.Writer{os.Stdout, os.Stderr},
-		UseJSON:  true,
-		LogLevel: log.Info,
+		Outputs:      []io.Writer{os.Stdout, os.Stderr},
+		OutputFormat: log.OutputFormatTEXT,
+		LogLevel:     log.Info,
 	}
 
 	logger := slog.NewSlogLogger(config)
@@ -49,9 +49,9 @@ import(
 )
 func main() {
 	config := log.Conf{
-		Outputs:  []io.Writer{os.Stdout, os.Stderr},
-		UseJSON:  true,
-		LogLevel: log.Info,
+		Outputs:      []io.Writer{os.Stdout, os.Stderr},
+		OutputFormat: log.OutputFormatTEXT,
+		LogLevel:     log.Info,
 	}
 
 	logger := zap.NewZapLogger(config)
