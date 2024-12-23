@@ -1,6 +1,7 @@
 # GoLog Logger Module
 
-`GoLog` is a Go logging module that implements an interface-based logging system with support for multiple output targets and configurable log levels. Internally, it uses the `slog` package for efficient logging.
+GoLog is a Go logging module that provides an interface-based logging system with support for configurable log levels and multiple output targets. It can integrate seamlessly with any logging library, such as `log/slog` from the standard golang package and `Uber Zap`, both of which are already implemented as examples. Additional libraries can be integrated in a similar manner.
+
 
 ## Features
 - Supports multiple output targets (e.g., `stdout`, `stderr`).
