@@ -50,7 +50,7 @@ import(
 func main() {
 	config := log.Conf{
 		Outputs:      []io.Writer{os.Stdout, os.Stderr},
-		OutputFormat: log.OutputFormatTEXT,
+		OutputFormat: log.OutputFormatJSON,
 		LogLevel:     log.Info,
 	}
 
