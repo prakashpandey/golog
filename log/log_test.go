@@ -14,13 +14,13 @@ func TestParseLogLevel(t *testing.T) {
 		{"INFO", Info, false},
 		{"WARN", Warn, false},
 		{"ERROR", Error, false},
-		{"INVALID", "", true},
-		{"", "", true},
+		{"INVALID", 0, true},
+		{"", 0, true},
 	}
 
 	for _, test := range tests {
 		t.Run(test.input, func(t *testing.T) {
-			result, err := ParseLogLevel(test.input)
+			result, err := ParseLevel(test.input)
 			if (err != nil) != test.err {
 				t.Errorf("ParseLogLevel(%q) error = %v, expected error = %v", test.input, err, test.err)
 			}
@@ -44,7 +44,7 @@ func TestParseLogLevel_ValidLevels(t *testing.T) {
 
 	for _, level := range validLevels {
 		t.Run(level.input, func(t *testing.T) {
-			result, err := ParseLogLevel(level.input)
+			result, err := ParseLevel(level.input)
 			if err != nil {
 				t.Errorf("ParseLogLevel(%q) returned an unexpected error: %v", level.input, err)
 			}
@@ -70,7 +70,7 @@ func TestParseLogLevel_InvalidLevels(t *testing.T) {
 
 	for _, level := range invalidLevels {
 		t.Run(level, func(t *testing.T) {
-			_, err := ParseLogLevel(level)
+			_, err := ParseLevel(level)
 			if err == nil {
 				t.Errorf("ParseLogLevel(%q) expected an error but got none", level)
 			}
