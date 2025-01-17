@@ -55,10 +55,16 @@ func NewZapLogger(config log.Config) log.Logger {
 
 		cores = append(cores, core)
 	}
+	// Create a new logger with the given default key value pairs.
+	var attrs []zap.Field
+	for k, v := range config.Attrs {
+		attrs = append(attrs, zap.String(k, v))
+	}
 	logger := zap.New(
 		zapcore.NewTee(cores...),
 		zap.AddCallerSkip(0),
 		zap.AddStacktrace(zap.ErrorLevel),
+		zap.Fields(attrs...),
 	)
 
 	return &ZapLogger{
